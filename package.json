@@ -5,6 +5,7 @@
   "author": "Kevin Le Guillou <contact@kevinleguillou.com>",
   "license": "MIT",
   "dependencies": {
+    "raw-loader": "^4.0.2",
     "three": "^0.123.0",
     "webpack": "^5.8.0",
     "webpack-cli": "^4.2.0"

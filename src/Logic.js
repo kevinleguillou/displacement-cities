@@ -6,16 +6,18 @@ export default class Logic{
 	constructor(){
 		this.scene = new THREE.Scene;
 		this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight);
-		this.camera.position.set(0, 1, 2);
+		this.camera.position.set(0, 0.5, 1.15);
+		this.camera.lookAt(0, 0.15, 0);
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		document.body.appendChild(this.renderer.domElement);
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+		// this.controls.target = new THREE.Vector3(0, 0.15, 0);
 
 		window.addEventListener("resize", ()=>{ this.setSize(window.innerWidth, window.innerHeight); });
 		this.setSize(window.innerWidth, window.innerHeight);
 
-		const debugCube = new DisplacementCity;
-		this.scene.add(debugCube);
+		const city = new DisplacementCity;
+		this.scene.add(city);
 
 		this.tick();
 	}
