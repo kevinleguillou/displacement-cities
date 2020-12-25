@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import SkySphere from "SkySphere";
 import DisplacementCity from "DisplacementCity";
 
 export default class Logic{
@@ -11,11 +12,12 @@ export default class Logic{
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		document.body.appendChild(this.renderer.domElement);
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-		// this.controls.target = new THREE.Vector3(0, 0.15, 0);
 
 		window.addEventListener("resize", ()=>{ this.setSize(window.innerWidth, window.innerHeight); });
 		this.setSize(window.innerWidth, window.innerHeight);
 
+		const sky = new SkySphere;
+		this.scene.add(sky);
 		const city = new DisplacementCity;
 		this.scene.add(city);
 

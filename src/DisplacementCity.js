@@ -37,7 +37,6 @@ export default class DisplacementCity{
 		const object = new THREE.Group;
 		object.add(model);
 		// object.add(wireframe);
-		object.position.y = -0.15;
 		return object;
 	}
 }
