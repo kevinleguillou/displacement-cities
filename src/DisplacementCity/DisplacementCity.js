@@ -31,15 +31,14 @@ export default class DisplacementCity{
 		const material = cityMaterial;
 		this.heightMapTranslation = new THREE.Vector2;
 		material.uniforms.u_translation = { value: this.heightMapTranslation };
-		window.addEventListener("mousemove", (e) => this.onMove(e));
 
 		const model = new THREE.Mesh(geometry, material);
 		this.meshGroup = new THREE.Group;
 		this.meshGroup.add(model);
 	}
-	tick(){
-	}
-	onMove(event){
-		this.heightMapTranslation.set(event.offsetX / window.innerWidth, event.offsetY / window.innerHeight);
+	tick(time){
+		let fractTime = time - Math.floor(time);
+		fractTime = time/10;
+		this.heightMapTranslation.set(fractTime, 0);
 	}
 }
