@@ -45,8 +45,7 @@ export default class SkySphere{
 		const geometry = new THREE.SphereGeometry(5, 8, 8);
 		const material = skyMaterial;
 		const model = new THREE.Mesh(geometry, material);
-		const object = new THREE.Group;
-		object.add(model);
-		return object;
+		this.meshGroup = new THREE.Group;
+		this.meshGroup.add(model);
 	}
 }
