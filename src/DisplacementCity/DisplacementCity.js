@@ -30,7 +30,7 @@ export default class DisplacementCity{
 		geometry.rotateX(-Math.PI/2);
 		const material = cityMaterial;
 		this.heightMapTranslation = new THREE.Vector2;
-		material.uniforms.u_translation = { value: this.heightMapTranslation };
+		material.uniforms.u_translation.value = this.heightMapTranslation;
 
 		const model = new THREE.Mesh(geometry, material);
 		this.meshGroup = new THREE.Group;

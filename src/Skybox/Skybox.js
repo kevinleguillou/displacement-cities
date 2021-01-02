@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import vertexShader from "./SkySphere.vert";
-import fragmentShader from "./SkySphere.frag";
+import vertexShader from "./Skybox.vert";
+import fragmentShader from "./Skybox.frag";
 
 const noiseTexture = new THREE.TextureLoader().load("assets/noise.png");
 noiseTexture.magFilter = noiseTexture.minFilter = THREE.NearestFilter;
@@ -21,10 +21,12 @@ const skyMaterial = new THREE.ShaderMaterial({
 	side: THREE.BackSide
 });
 
-export default class SkySphere{
+export default class Skybox
+{
 	constructor(){
 		const geometry = new THREE.BoxGeometry(1, 1, 1);
 		const material = skyMaterial;
+
 		const model = new THREE.Mesh(geometry, material);
 		model.translateY(0.49);
 		this.meshGroup = new THREE.Group;

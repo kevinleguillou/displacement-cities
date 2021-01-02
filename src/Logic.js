@@ -1,13 +1,14 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import SkySphere from "SkySphere/SkySphere";
+import Skybox from "Skybox/Skybox";
 import DisplacementCity from "DisplacementCity/DisplacementCity";
 
 export default class Logic{
 	constructor(){
 		this.scene = new THREE.Scene;
 		this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight);
-		this.camera.position.set(0.4, 1, 1.25);
+		this.camera.position.set(0, 0.25, 1);
+		// this.camera.position.set(0.4, 1, 1.25);
 		this.camera.lookAt(0, 0.5, 0);
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		document.body.appendChild(this.renderer.domElement);
@@ -21,7 +22,7 @@ export default class Logic{
 
 		this.startTime = new Date;
 
-		const sky = new SkySphere;
+		const sky = new Skybox;
 		this.registerObject(sky);
 		const city = new DisplacementCity;
 		this.registerObject(city);
