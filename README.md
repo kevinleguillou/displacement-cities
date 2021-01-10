@@ -1,4 +1,6 @@
-![A cityscape generated using the Displacement Cities project](https://github.com/kevinleguillou/displacement-cities/blob/develop/dist/header.jpg)
+![A cityscape generated using the Displacement Cities project](https://github.com/kevinleguillou/displacement-cities/blob/develop/assets/banner.jpg)
+
+[Test here ! 🌆][https://kevinleguillou.github.io/displacement-cities/index.html]
 
 # Displacement Cities
 
