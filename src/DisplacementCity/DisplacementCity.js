@@ -22,23 +22,21 @@ const cityMaterial = new THREE.ShaderMaterial({
 });
 
 export default class DisplacementCity{
-	constructor(){
+	constructor(controls){
+		this.controls = controls;
 		const textureSize = 64;
 		const precision = 4; // min 2
 		const verticesCount = textureSize*precision;
 		const geometry = new THREE.PlaneGeometry(1, 1, verticesCount, verticesCount);
 		geometry.rotateX(-Math.PI/2);
-		const material = cityMaterial;
-		this.heightMapTranslation = new THREE.Vector2;
-		material.uniforms.u_translation.value = this.heightMapTranslation;
+		this.material = cityMaterial;
 
-		const model = new THREE.Mesh(geometry, material);
+		const model = new THREE.Mesh(geometry, this.material);
 		this.meshGroup = new THREE.Group;
 		this.meshGroup.add(model);
 	}
-	tick(time){
-		let fractTime = time - Math.floor(time);
-		fractTime = time/10;
-		this.heightMapTranslation.set(fractTime, 0);
+	tick(){
+		this.material.uniforms.u_translation.value.x = this.controls.translation;
+		this.material.uniforms.u_displacementIntensity.value = this.controls.height;
 	}
 }

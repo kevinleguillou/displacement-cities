@@ -1,3 +1,4 @@
+import * as dat from 'dat.gui';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Skybox from "Skybox/Skybox";
@@ -5,16 +6,23 @@ import DisplacementCity from "DisplacementCity/DisplacementCity";
 
 export default class Logic{
 	constructor(){
+		this.gui = new dat.GUI;
+		this.controls = {
+			translation: 0.5,
+			height: 1,
+		};
+		this.gui.add(this.controls, "translation", 0, 1, 0.01);
+		this.gui.add(this.controls, "height", 0, 1, 0.01);
+
 		this.scene = new THREE.Scene;
 		this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight);
-		this.camera.position.set(0, 0.25, 1);
-		// this.camera.position.set(0.4, 1, 1.25);
+		this.camera.position.set(0.4, 1, 1.25);
 		this.camera.lookAt(0, 0.5, 0);
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		document.body.appendChild(this.renderer.domElement);
-		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-		this.controls.target.set(0, 0.35, 0);
-		this.controls.update();
+		this.cameraControls = new OrbitControls(this.camera, this.renderer.domElement);
+		this.cameraControls.target.set(0, 0.35, 0);
+		this.cameraControls.update();
 		this.sceneObjects = [];
 
 		window.addEventListener("resize", ()=>{ this.setSize(window.innerWidth, window.innerHeight); });
@@ -24,7 +32,7 @@ export default class Logic{
 
 		const sky = new Skybox;
 		this.registerObject(sky);
-		const city = new DisplacementCity;
+		const city = new DisplacementCity(this.controls);
 		this.registerObject(city);
 
 		this.tick();
